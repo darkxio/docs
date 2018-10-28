@@ -57,8 +57,153 @@ Katalon Command Line options 
 -----------------------------
 
 Here's the list of options supported for the "_katalon_" command:
-
-<table><thead><tr><th>Katalon Command Line Option</th><th>Description</th><th>Mandatory?</th></tr></thead><tbody><tr><td>-runMode=console</td><td>Enable console mode.</td><td>Y</td></tr><tr><td>-consoleLog</td><td>Display log in the console.</td><td>N</td></tr><tr><td>--config -kobiton.authentication.username=[yourKobitonusername]-kobiton.authentication.password=xxxxx</td><td>Passing Kobiton username and password</td><td>N</td></tr><tr><td>-noExit</td><td>Keep the console open after the execution is completed.</td><td>N</td></tr><tr><td>-summaryReport</td><td>Send summary report for a batch run.</td><td>N</td></tr><tr><td>-statusDelay=&lt;seconds&gt;</td><td>System will update execution status of the test suite after the delay period (in seconds) specified.</td><td>N</td></tr><tr><td>-projectPath=&lt;path&gt;</td><td>Specify the project location (include .prj file). The absolute path must be used in this case.</td><td>Y</td></tr><tr><td>-testSuitePath=&lt;path&gt;</td><td>Specify the test suite file (without extension .ts). The relative path (root being project folder) must be used in this case.</td><td>Y</td></tr><tr><td>-testSuiteCollectionPath=&lt;path&gt;</td><td><p>Specify the test suite file (without extension .tsc). The relative path (root being project folder) must be used in this case.</p><p>Note: Available only in 4.4+</p></td><td>Y (<em>If -testSuitePath is not used. Otherwise it's optional</em>)</td></tr><tr><td>-browserType=&lt;browser&gt;</td><td><p>Specify the browser type used for test suite execution.</p><p>The following browsers are supported in Katalon:</p><ul><li>Firefox</li><li>Chrome</li><li>IE</li><li>Safari</li><li>Remote</li><li>Android</li><li>iOS</li></ul></td><td><p>Y</p><p><strong>Only Chrome, Firefox and Remote is available for use in Linux version</strong></p></td></tr><tr><td>-retry=&lt;number of retry times&gt;</td><td>Number of times running test cases in the test suite.</td><td>N</td></tr><tr><td>-retryFailedTestCases=&lt;true, false&gt;</td><td>Retry failed test cases fail in test suite ( override setting in test suite file ). There are 2 options for retry: true if you want run fail test case and otherwise false</td><td>N</td></tr><tr><td>-qTestDestId=&lt;destination's id&gt;</td><td>Id of the destination where the result will be uploaded on it</td><td>N</td></tr><tr><td>-qTestDestType=&lt;destination's type&gt;</td><td>Type of the destination. There are 4 options for destination's type:"test-suite", "test-cycle", &nbsp;"release", and "root".</td><td>N</td></tr><tr><td>-reportFolder=&lt;path&gt;</td><td>Specify the destination folder for saving report files. Can use absolute path or relative path (root being project folder).</td><td>N</td></tr><tr><td>-reportFileName=&lt;name&gt;</td><td>Specify the name for report files (.html, .csv, .log). If not provide, system uses the name "report" (report.html, report.csv, report.log). This option is only taken into account when being used with "-reportFolder" option.</td><td>N</td></tr><tr><td>-remoteWebDriverUrl=&lt;remote web server url&gt;</td><td>Specify the remote web driver URL</td><td>N</td></tr><tr><td>-remoteWebDriverType=&lt;Selenium, Appium&gt;</td><td>Remote web's driver type</td><td>Y <em>(If -remoteWebDriverUrl is used)</em></td></tr><tr><td>-deviceId=&lt;device Id for Android/device uuid for ios&gt;</td><td>Specify the device's ID to execute test scripts using this device</td><td>Y<em> (If -browserType=Android or -browserType=iOS is used)</em></td></tr><tr><td>-email</td><td>Registered email on <a class="external-link" href="https://www.katalon.com/" rel="nofollow">Katalon Studio</a> page</td><td>N <em>(If Katalon Studio is already activated)</em></td></tr><tr><td><strong>These proxy options below must be used with --config parameter</strong></td></tr><tr><td>-proxy.option</td><td>NO_PROXY, USE_SYSTEM, MANUAL_CONFIG</td><td>Y</td></tr><tr><td>-proxy.server.type</td><td>&nbsp;HTTP, HTTPS, or SOCKS</td><td>Y</td></tr><tr><td>-proxy.server.address</td><td>Example: locahost,&nbsp;<a class="external-link" href="http://katalon.com/" rel="nofollow">http://katalon.com</a></td><td>Y</td></tr><tr><td>-proxy.server.port</td><td>Example: 80, 8080, 9999</td><td>Y</td></tr><tr><td>-proxy.username</td><td>Example:&nbsp;MyProxyUsername</td><td>Optional (YES if your proxy server requires authentication)</td></tr><tr><td>-proxy.password</td><td>Example: MyProxyPassword</td><td>Optional (YES if your proxy server requires authentication)</td></tr><tr><td>Example: <code class="java plain">katalon -noSplash&nbsp; -runMode=console -consoleLog -noExit -projectPath=</code><code class="java string">"C:\Users\Katalon Studio\Project\YourProject.prj"</code>&nbsp;<code class="java plain">-retry=</code><code class="java value">0</code>&nbsp;<code class="java plain">-testSuitePath=</code><code class="java string">"Test Suites/TS_RegressionTest"</code>&nbsp;<code class="java plain">-browserType=</code><code class="java string">"Chrome (headless)"</code>&nbsp;<code class="java plain">--config -proxy.option=MANUAL_CONFIG -proxy.server.type=HTTP -proxy.server.address=</code><code class="java string">"192.168.12.32"</code>&nbsp;<code class="java plain">-proxy.server.port=</code><code class="java string">"8888"</code><p>&nbsp;</p><p>&nbsp;</p></td></tr><tr><td>-executionProfile</td><td><p><strong>Since 5.4</strong></p><p>Specify the&nbsp;<a href="/pages/viewpage.action?pageId=13697476">execution profile</a>&nbsp;to be executed with</p></td><td>N</td></tr></tbody></table>
+<table>
+<thead>
+<tr>
+<th>Katalon Command Line Option</th>
+<th>Description</th>
+<th>Mandatory?</th></tr></thead>
+<tbody>
+<tr>
+<td>-runMode=console</td>
+<td>Enable console mode.</td>
+<td>Y</td></tr>
+<tr>
+<td>-consoleLog</td>
+<td>Display log in the console.</td>
+<td>N</td></tr>
+<tr>
+<td>--config -kobiton.authentication.username=[yourKobitonusername]-kobiton.authentication.password=xxxxx</td>
+<td>Passing Kobiton username and password</td>
+<td>N</td></tr>
+<tr>
+<td>-noExit</td>
+<td>Keep the console open after the execution is completed.</td>
+<td>N</td></tr>
+<tr>
+<td>-summaryReport</td>
+<td>Send summary report for a batch run.</td>
+<td>N</td></tr>
+<tr>
+<td>-statusDelay=&lt;seconds&gt;</td>
+<td>System will update execution status of the test suite after the delay period (in seconds) specified.</td>
+<td>N</td></tr>
+<tr>
+<td>-projectPath=&lt;path&gt;</td>
+<td>Specify the project location (include .prj file). The absolute path must be used in this case.</td>
+<td>Y</td></tr>
+<tr>
+<td>-testSuitePath=&lt;path&gt;</td>
+<td>Specify the test suite file (without extension .ts). The relative path (root being project folder) must be used in this case.</td>
+<td>Y</td></tr>
+<tr>
+<td>-testSuiteCollectionPath=&lt;path&gt;</td>
+<td>
+<p>Specify the test suite file (without extension .tsc). The relative path (root being project folder) must be used in this case.</p>
+<p>Note: Available only in 4.4+</p></td>
+<td>Y (<em>If -testSuitePath is not used. Otherwise it's optional</em>)</td></tr>
+<tr>
+<td>-browserType=&lt;browser&gt;</td>
+<td>
+<p>Specify the browser type used for test suite execution.</p>
+<p>The following browsers are supported in Katalon:</p>
+<ul>
+<li>Firefox</li>
+<li>Chrome</li>
+<li>IE</li>
+<li>Safari</li>
+<li>Remote</li>
+<li>Android</li>
+<li>iOS</li></ul></td>
+<td>
+<p>Y</p>
+<p>
+<strong>Only Chrome, Firefox and Remote is available for use in Linux version</strong></p></td></tr>
+<tr>
+<td>-retry=&lt;number of retry times&gt;</td>
+<td>Number of times running test cases in the test suite.</td>
+<td>N</td></tr>
+<tr>
+<td>-retryFailedTestCases=&lt;true, false&gt;</td>
+<td>Retry failed test cases fail in test suite ( override setting in test suite file ). There are 2 options for retry: true if you want run fail test case and otherwise false</td>
+<td>N</td></tr>
+<tr>
+<td>-qTestDestId=&lt;destination's id&gt;</td>
+<td>Id of the destination where the result will be uploaded on it</td>
+<td>N</td></tr>
+<tr>
+<td>-qTestDestType=&lt;destination's type&gt;</td>
+<td>Type of the destination. There are 4 options for destination's type:"test-suite", "test-cycle", &nbsp;"release", and "root".</td>
+<td>N</td></tr>
+<tr>
+<td>-reportFolder=&lt;path&gt;</td>
+<td>Specify the destination folder for saving report files. Can use absolute path or relative path (root being project folder).</td>
+<td>N</td></tr>
+<tr>
+<td>-reportFileName=&lt;name&gt;</td>
+<td>Specify the name for report files (.html, .csv, .log). If not provide, system uses the name "report" (report.html, report.csv, report.log). This option is only taken into account when being used with "-reportFolder" option.</td>
+<td>N</td></tr>
+<tr>
+<td>-sendMail=&lt;e-mail address&gt;</td>
+<td>Specify the e-mail address for receiving report files. If the e-mail address was not specified, the report files will not be sent.</td>
+<td>N</td></tr>
+<td>-remoteWebDriverUrl=&lt;remote web server url&gt;</td>
+<td>Specify the remote web driver URL</td>
+<td>N</td></tr>
+<tr>
+<td>-remoteWebDriverType=&lt;Selenium, Appium&gt;</td>
+<td>Remote web's driver type</td>
+<td>Y <em>(If -remoteWebDriverUrl is used)</em></td></tr>
+<tr>
+<td>-deviceId=&lt;device Id for Android/device uuid for ios&gt;</td>
+<td>Specify the device's ID to execute test scripts using this device</td>
+<td>Y<em> (If -browserType=Android or -browserType=iOS is used)</em></td></tr>
+<tr>
+<td>-email</td>
+<td>Registered e-mail on <a class="external-link" href="https://www.katalon.com/" rel="nofollow">Katalon Studio</a> page</td>
+<td>N <em>(If Katalon Studio is already activated)</em></td></tr>
+<tr>
+<td>
+<strong>These proxy options below must be used with --config parameter</strong></td></tr>
+<tr>
+<td>-proxy.option</td>
+<td>NO_PROXY, USE_SYSTEM, MANUAL_CONFIG</td>
+<td>Y</td></tr>
+<tr>
+<td>-proxy.server.type</td>
+<td>&nbsp;HTTP, HTTPS, or SOCKS</td>
+<td>Y</td></tr>
+<tr>
+<td>-proxy.server.address</td>
+<td>Example: locahost,&nbsp;<a class="external-link" href="http://katalon.com/" rel="nofollow">http://katalon.com</a></td>
+<td>Y</td></tr>
+<tr>
+<td>-proxy.server.port</td>
+<td>Example: 80, 8080, 9999</td>
+<td>Y</td></tr>
+<tr>
+<td>-proxy.username</td>
+<td>Example:&nbsp;MyProxyUsername</td>
+<td>Optional (YES if your proxy server requires authentication)</td></tr>
+<tr>
+<td>-proxy.password</td>
+<td>Example: MyProxyPassword</td>
+<td>Optional (YES if your proxy server requires authentication)</td></tr>
+<tr>
+<td colspan="3">Example: <code class="java plain">katalon -noSplash&nbsp; -runMode=console -consoleLog -noExit -projectPath=</code>
+<code class="java string">"C:\Users\Katalon Studio\Project\YourProject.prj"</code>&nbsp;<code class="java plain">-retry=</code>
+<code class="java value">0</code>&nbsp;<code class="java plain">-testSuitePath=</code>
+<code class="java string">"Test Suites/TS_RegressionTest"</code>&nbsp;<code class="java plain">-browserType=</code>
+<code class="java string">"Chrome (headless)"</code>&nbsp;<code class="java plain">--config -proxy.option=MANUAL_CONFIG -proxy.server.type=HTTP -proxy.server.address=</code>
+<code class="java string">"192.168.12.32"</code>&nbsp;<code class="java plain">-proxy.server.port=</code>
+<code class="java string">"8888"</code></td></tr>
+<tr>
+<td>-executionProfile</td>
+<td>
+<p>
+<strong>Since 5.4</strong></p>
+<p>Specify the&nbsp;<a href="/pages/viewpage.action?pageId=13697476">execution profile</a>&nbsp;to be executed with</p></td>
+<td>N</td></tr></tbody></table>
 
 Command Builder
 ---------------
